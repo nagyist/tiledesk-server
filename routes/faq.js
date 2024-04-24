@@ -554,7 +554,7 @@ router.get('/:faqid', function (req, res) {
 
   winston.debug(req.body);
 
-  Faq.findById(req.params.faqid, function (err, faq) {
+  Faq.findOne({ _id: req.params.faqid, id_project: req.projectid }, (err, faq) => {
     if (err) {
       return res.status(500).send({ success: false, msg: 'Error getting object.' });
     }
@@ -562,7 +562,17 @@ router.get('/:faqid', function (req, res) {
       return res.status(404).send({ success: false, msg: 'Object not found.' });
     }
     res.json(faq);
-  });
+  })
+
+  // Faq.findById(req.params.faqid, function (err, faq) {
+  //   if (err) {
+  //     return res.status(500).send({ success: false, msg: 'Error getting object.' });
+  //   }
+  //   if (!faq) {
+  //     return res.status(404).send({ success: false, msg: 'Object not found.' });
+  //   }
+  //   res.json(faq);
+  // });
 });
 
 
