@@ -43,6 +43,12 @@ class Listener {
             REDIS_PORT: port,
             REDIS_PASSWORD: password,
             log: log
+        }, (err) => {
+            if (!err) {
+                winston.info("Tiledesk SMS Connector proxy server succesfully started.");
+            } else {
+                winston.info("unable to start Tiledesk SMS Connector. " + err);
+            }
         })
         
     }

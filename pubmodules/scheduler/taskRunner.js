@@ -5,6 +5,7 @@
 var winston = require('../../config/winston');
 var closeBotUnresponsiveRequestTask = require('./tasks/closeBotUnresponsiveRequestTask');
 var closeAgentUnresponsiveRequestTask = require('./tasks/closeAgentUnresponsiveRequestTask');
+var closeAgentUnresponsiveRequestTaskMW = require('./tasks/closeBotUnresponsiveRequestTaskMW');
 
 class TaskRunner {
 
@@ -18,6 +19,7 @@ start() {
       winston.info("TaskRunner started" );
       closeBotUnresponsiveRequestTask.run();
       closeAgentUnresponsiveRequestTask.run();
+      closeAgentUnresponsiveRequestTaskMW.run();
     }else {
       winston.info("TaskRunner is disabled" );
     }
