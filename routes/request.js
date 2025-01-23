@@ -1166,6 +1166,7 @@ router.get('/', function (req, res, next) {
   skip = page * limit;
 
   // Default query
+  // Valuta $or al posto di $nin
   var query = { "id_project": req.projectid, "status": { $lt: 1000, $nin: [50, 150] }, preflight: false };
 
   if (req.user instanceof Subscription) {
