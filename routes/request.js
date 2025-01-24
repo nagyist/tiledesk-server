@@ -1406,7 +1406,7 @@ router.get('/', function (req, res, next) {
   }
 
   if (req.query.draft && (req.query.draft === 'false' || req.query.draft === false)) {
-    query.draft = { $in: [false, null] }
+    query.draft = { $ne: true }
   }
 
   var projection = undefined;
@@ -2162,6 +2162,9 @@ router.get('/count', async (req, res) => {
   let currentSlot
   let promises = [];
 
+  /**
+   * quota_count option no longer used from client
+   */
   if (quota_count) {
 
     let quoteManager = req.app.get('quote_manager');
